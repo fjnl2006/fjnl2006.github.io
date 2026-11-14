@@ -148,6 +148,12 @@ h4{margin:0 0 10px;font:500 12px var(--f-mono);letter-spacing:.12em;text-transfo
   background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.75),transparent 40%)}
 .holo svg{position:absolute;inset:0;z-index:1;width:100%;height:100%}
 .hint{margin:0;font:400 12px var(--f-mono);color:var(--muted)}
+.art.video{aspect-ratio:16/9;background:#000}
+.art.video iframe{display:block;width:100%;height:100%;border:0}
+.vlink{display:grid;place-items:center;align-content:center;gap:14px;text-decoration:none;color:var(--fg);font-weight:600;background:linear-gradient(135deg,var(--surface-2),var(--bg))}
+.vlink:hover .play{background:var(--c);border-color:var(--c)}
+.play{position:relative;width:68px;height:68px;border-radius:50%;border:2px solid var(--c);transition:background .15s,border-color .15s}
+.play::before{content:"";position:absolute;left:27px;top:20px;border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent var(--fg)}
 
 /* Más cosas */
 .more{border-top:1px solid var(--line);padding-block:36px 0}
@@ -239,52 +245,17 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
         </div>
       </article>
 
-      <!-- PairsUp -->
+      <!-- 2ForCrime -->
       <article class="proj" id="pairsup" style="--c:var(--c-pairs)">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 360 240" focusable="false">
-            <defs>
-              <radialGradient id="dk" gradientUnits="userSpaceOnUse" cx="64" cy="93" r="72">
-                <stop offset=".22" style="stop-color:var(--surface-2);stop-opacity:0"/>
-                <stop offset="1" style="stop-color:var(--bg);stop-opacity:.97"/>
-              </radialGradient>
-            </defs>
-            <svg x="0" y="0" width="112" height="240" viewBox="0 0 112 240">
-              <rect width="112" height="240" rx="6" class="tile"/>
-              <line x1="56" y1="14" x2="56" y2="226" class="mid"/>
-              <rect x="10" y="84" width="6" height="52" rx="2" class="pad"/>
-              <rect x="96" y="124" width="6" height="52" rx="2" class="pad"/>
-              <circle cx="62" cy="112" r="5" class="ball"/>
-              <rect x="8" y="0" width="40" height="6" class="gate-a"/>
-              <rect x="64" y="0" width="40" height="6" class="gate-b"/>
-              <rect x="8" y="234" width="40" height="6" class="gate-b"/>
-              <rect x="64" y="234" width="40" height="6" class="gate-a"/>
-            </svg>
-            <svg x="124" y="0" width="112" height="240" viewBox="0 0 112 240">
-              <rect width="112" height="240" rx="6" class="tile"/>
-              <path d="M12 24H100V70H34V116H88V162H24V210H92" class="wall"/>
-              <path d="M56 24V48M72 70V92M56 116V140M60 162V186" class="wall"/>
-              <circle cx="64" cy="93" r="4.5" class="pl"/>
-              <rect width="112" height="240" rx="6" fill="url(#dk)"/>
-            </svg>
-            <svg x="248" y="0" width="112" height="240" viewBox="0 0 112 240">
-              <rect width="112" height="240" rx="6" class="tile"/>
-              <line x1="8" y1="34" x2="104" y2="34" class="wallb"/>
-              <polyline points="16,200 52,34" class="shot"/>
-              <polyline points="52,34 88,200" class="shot2"/>
-              <circle cx="52" cy="34" r="5" class="hit"/>
-              <circle cx="16" cy="208" r="6" class="pl"/>
-              <circle cx="88" cy="208" r="7" class="tg"/>
-              <circle cx="88" cy="208" r="2.5" class="en"/>
-            </svg>
-          </svg>
+        <div class="art video">
+          <iframe src="https://www.youtube-nocookie.com/embed/4xICBXGJGN0" title="2ForCrime" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="body">
           <div class="meta">
             <span class="status" data-en="Finished">Terminado</span>
             <span data-en="Team project · Feb–May 2026 · 56 of the repo's 143 commits are mine">Proyecto en equipo · feb–may 2026 · 56 de los 143 commits del repo son míos</span>
           </div>
-          <h3>PairsUp</h3>
+          <h3>2ForCrime</h3>
           <p class="lead" data-en="A collection of minigames for several players, built as a team, with a lobby and score screens between rounds.">Colección de minijuegos para varios jugadores hecha en equipo, con lobby y pantallas de puntuación entre rondas.</p>
           <h4 data-en="What I did">Lo que hice yo</h4>
           <ul class="did">
@@ -322,13 +293,14 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
             <span class="status" data-en="Finished">Terminado</span>
             <span data-en="Course project (Computer Graphics) · Oct–Nov 2026">Trabajo de clase (Gráficos por computador) · oct–nov 2026</span>
           </div>
-          <h3 data-en="Holographic card">Carta holográfica</h3>
-          <p class="lead" data-en="A collectible card with a holographic effect made in Shader Graph that reacts to the mouse. The animated card here copies the idea in CSS.">Carta coleccionable con un efecto holográfico hecho en Shader Graph que reacciona al ratón. La carta animada de esta ficha copia la idea en CSS.</p>
+          <h3 data-en="Shaders with Shader Graph">Shaders con Shader Graph</h3>
+          <p class="lead" data-en="A collection of shaders from the Computer Graphics course: a holographic collectible card that reacts to the mouse, water with waves and a dissolve effect. The animated card here copies the idea in CSS.">Colección de shaders de la asignatura Gráficos por computador: una carta coleccionable holográfica que reacciona al ratón, un agua con olas y un efecto de disolución. La carta animada de esta ficha copia la idea en CSS.</p>
           <h4 data-en="What I did">Lo que hice yo</h4>
           <ul class="did">
-            <li data-en="The holographic shader, built with Shader Graph in URP.">El shader holográfico, hecho con Shader Graph en URP.</li>
-            <li data-en="A C# script that casts a ray from the mouse, reads the UV coordinate it hits on the card and sends it to the shader as _PointerPosition.">Un script en C# que lanza un rayo desde el ratón, lee la coordenada UV que toca en la carta y se la pasa al shader como _PointerPosition.</li>
-            <li data-en="MaterialPropertyBlock to change that value without creating a new material instance.">MaterialPropertyBlock para cambiar ese valor sin crear una instancia nueva del material.</li>
+            <li data-en="Holographic card: a shader with configurable holographic colors and gradient, stripes and glare, made in Shader Graph for URP.">Carta holográfica: un shader con colores y degradado holográfico, rayas y brillo configurables, hecho en Shader Graph para URP.</li>
+            <li data-en="A C# script casts a ray from the mouse, reads the UV coordinate it hits on the card and sends it to the shader as _PointerPosition through a MaterialPropertyBlock, without creating a new material.">Un script en C# lanza un rayo desde el ratón, lee la coordenada UV que toca en la carta y se la pasa al shader como _PointerPosition con un MaterialPropertyBlock, sin crear un material nuevo.</li>
+            <li data-en="Water: waves move by displacing vertices with a sine wave (configurable frequency, height and rotation), and the surface blends two normal maps that scroll over time.">Agua: las olas se mueven desplazando los vértices con una onda senoidal (frecuencia, altura y rotación configurables), y la superficie mezcla dos mapas de normales que se desplazan con el tiempo.</li>
+            <li data-en="Dissolve effect: noise gradually cuts the character away, the edge glows with its own color and a fresnel effect is added.">Efecto de disolución: un ruido recorta el personaje poco a poco, el borde brilla con un color propio y se añade un efecto fresnel.</li>
             <li data-en="Camera control to orbit around the card by dragging.">Control de cámara para girar alrededor de la carta arrastrando.</li>
           </ul>
           <ul class="tags"><li>Shader Graph</li><li>URP</li><li>C#</li><li>MaterialPropertyBlock</li></ul>
@@ -367,12 +339,13 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           <p class="lead" data-en="An online multiplayer game made with Unity and Netcode for GameObjects. I'm still working on it.">Juego multijugador en red hecho con Unity y Netcode for GameObjects. Sigo trabajando en él.</p>
           <h4 data-en="What I'm doing">Lo que estoy haciendo yo</h4>
           <ul class="did">
-            <li data-en="The pick-up mechanic: players grab boxes with the E key (PlayerPickUp).">La mecánica de coger cajas con la tecla E (PlayerPickUp).</li>
-            <li data-en="Network sync of the held box with a NetworkVariable, and the server decides who gets the box with ServerRpc calls.">Sincronización en red de la caja que lleva cada jugador con una NetworkVariable, y el servidor decide quién se queda la caja con llamadas ServerRpc.</li>
+            <li data-en="The pick-up mechanic: players grab boxes with the E key (PlayerPickUp). The box each player holds is synced over the network with a NetworkVariable, and the server decides who gets the box with ServerRpc calls.">La mecánica de coger cajas con la tecla E (PlayerPickUp). La caja que lleva cada jugador se sincroniza en red con una NetworkVariable, y el servidor decide quién se queda la caja con llamadas ServerRpc.</li>
+            <li data-en="The online scoring system: each base counts the boxes that enter its zone, and the scores of the 4 bases live in a NetworkList that only the server can change.">El sistema de puntuación en red: cada base cuenta las cajas que entran en su zona, y los marcadores de las 4 bases viven en una NetworkList que solo el servidor puede modificar.</li>
+            <li data-en="Base assignment: when a player connects, the server gives them the first free base out of 4, and frees it when they disconnect (GameManager).">La asignación de bases: cuando un jugador se conecta, el servidor le da la primera base libre de las 4, y la libera cuando se desconecta (GameManager).</li>
             <li data-en="The script reads the pick-up action from the Input System through StarterAssetsInputs, on top of the Starter Assets character controllers.">El script lee la acción de coger del Input System a través de StarterAssetsInputs, sobre los controladores de personaje de Starter Assets.</li>
             <li data-en="The project already has a lobby, connection approval and a match manager, and it keeps growing.">El proyecto ya tiene lobby, aprobación de conexiones y gestor de partida, y sigue creciendo.</li>
           </ul>
-          <ul class="tags"><li>Unity</li><li>C#</li><li>Netcode for GameObjects</li><li>ServerRpc</li><li>NetworkVariable</li></ul>
+          <ul class="tags"><li>Unity</li><li>C#</li><li>Netcode for GameObjects</li><li>ServerRpc</li><li>NetworkVariable</li><li>NetworkList</li></ul>
           <a class="repo" href="https://github.com/maizzon14/PackageLost"><span data-en="Team repository">Repositorio del equipo</span> →</a>
         </div>
       </article>
