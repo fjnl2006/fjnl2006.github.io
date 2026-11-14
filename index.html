@@ -30,6 +30,7 @@
   --c-pairs:#3fd0c9;
   --c-shader:#b58cff;
   --c-pkg:#6aa7ff;
+  --c-vr:#ff7eb6;
   --f-display:"Chakra Petch","Trebuchet MS",system-ui,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
@@ -120,6 +121,16 @@ h4{margin:0 0 10px;font:500 12px var(--f-mono);letter-spacing:.12em;text-transfo
 .box{fill:none;stroke:var(--wip);stroke-width:2}
 .key{fill:var(--surface-2);stroke:var(--fg);stroke-width:1.5}
 .kt{font:500 13px var(--f-mono);fill:var(--fg)}
+.lt{font:600 17px var(--f-mono);fill:var(--fg)}
+.hid{fill:var(--surface-2);stroke:var(--line);stroke-width:1.5}
+.rev{fill:var(--surface-2);stroke:var(--c);stroke-width:1.5}
+.wheel{fill:var(--surface-2);stroke:var(--muted);stroke-width:1.5}
+.seg{fill:var(--c);opacity:.3}
+.spoke{stroke:var(--line);stroke-width:1.5}
+.hub{fill:var(--c)}
+.ptr{fill:var(--fg)}
+.ring-a{fill:none;stroke:var(--fg);stroke-width:5}
+.ring-b{fill:none;stroke:var(--wip);stroke-width:5}
 
 /* Carta que reacciona al puntero (mismo truco que el shader del proyecto) */
 .stage{display:grid;place-items:center;gap:14px;padding:30px 16px 22px;min-height:260px}
@@ -168,7 +179,7 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
 
   <main>
     <section class="hero">
-      <p class="hud" data-en="&gt; projects: 3 finished, 1 in development">&gt; proyectos: 3 terminados, 1 en desarrollo</p>
+      <p class="hud" data-en="&gt; projects: 3 finished, 2 in development">&gt; proyectos: 3 terminados, 2 en desarrollo</p>
       <h1 data-en="Game developer">Desarrollador de videojuegos</h1>
       <p class="sub" data-en="I'm Fran, specialized in Unity and C#. I build game mechanics, networked multiplayer systems and shader effects, in solo and team projects.">Soy Fran, especializado en Unity y C#. Desarrollo mecánicas de juego, sistemas multijugador en red y efectos gráficos con shaders, en proyectos individuales y en equipo.</p>
       <ul class="chips">
@@ -363,6 +374,51 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </ul>
           <ul class="tags"><li>Unity</li><li>C#</li><li>Netcode for GameObjects</li><li>ServerRpc</li><li>NetworkVariable</li></ul>
           <a class="repo" href="https://github.com/maizzon14/PackageLost"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+        </div>
+      </article>
+
+      <!-- TheHellOfAFortune -->
+      <article class="proj" id="wheel" style="--c:var(--c-vr)">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 360 240" focusable="false">
+            <rect x="53" y="16" width="34" height="34" rx="5" class="rev"/><text x="70" y="40" text-anchor="middle" class="lt">S</text>
+            <rect x="97" y="16" width="34" height="34" rx="5" class="hid"/>
+            <rect x="141" y="16" width="34" height="34" rx="5" class="rev"/><text x="158" y="40" text-anchor="middle" class="lt">E</text>
+            <rect x="185" y="16" width="34" height="34" rx="5" class="hid"/>
+            <rect x="229" y="16" width="34" height="34" rx="5" class="rev"/><text x="246" y="40" text-anchor="middle" class="lt">T</text>
+            <rect x="273" y="16" width="34" height="34" rx="5" class="rev"/><text x="290" y="40" text-anchor="middle" class="lt">E</text>
+            <circle cx="180" cy="150" r="62" class="wheel"/>
+            <path d="M180 150L180 88A62 62 0 0 1 223.84 106.16Z" class="seg"/>
+            <path d="M180 150L242 150A62 62 0 0 1 223.84 193.84Z" class="seg"/>
+            <path d="M180 150L180 212A62 62 0 0 1 136.16 193.84Z" class="seg"/>
+            <path d="M180 150L118 150A62 62 0 0 1 136.16 106.16Z" class="seg"/>
+            <path d="M180 88V212M118 150H242M136.16 106.16L223.84 193.84M223.84 106.16L136.16 193.84" class="spoke"/>
+            <circle cx="180" cy="150" r="8" class="hub"/>
+            <polygon points="180,90 172,72 188,72" class="ptr"/>
+            <path d="M245.8 112A76 76 0 0 1 238.2 198.9" class="shot2"/>
+            <circle cx="245.8" cy="112" r="9" class="pl"/>
+            <circle cx="60" cy="190" r="14" class="ring-a"/><circle cx="60" cy="173" r="4" class="en"/>
+            <text x="60" y="226" text-anchor="middle" class="t">6</text>
+            <circle cx="300" cy="190" r="14" class="ring-b"/><circle cx="300" cy="173" r="4" class="en"/>
+            <text x="300" y="226" text-anchor="middle" class="t">12</text>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="meta">
+            <span class="status wip" data-en="In development">En desarrollo</span>
+            <span data-en="Team project · since Nov 2026">Proyecto en equipo · desde nov 2026</span>
+          </div>
+          <h3>TheHellOfAFortune</h3>
+          <p class="lead" data-en="A virtual reality game inspired by a wheel-of-fortune show: you spin the wheel with your hands, uncover phrases letter by letter on a panel and buy items in a shop. We build it as a team with Unity and the XR Interaction Toolkit.">Juego de realidad virtual inspirado en la ruleta de la suerte: giras la ruleta con las manos, descubres frases letra a letra en un panel y compras objetos en una tienda. Lo hacemos en equipo con Unity y XR Interaction Toolkit.</p>
+          <h4 data-en="What I'm doing">Lo que estoy haciendo yo</h4>
+          <ul class="did">
+            <li data-en="The in-game shop: the VR shop scene and the scripts that run it (ShopManager and ShopSlot).">La tienda del juego: la escena de la tienda en VR y los scripts que la hacen funcionar (ShopManager y ShopSlot).</li>
+            <li data-en="Shop items are ScriptableObjects (name, description, price, mesh, materials and rarity), so new items can be created without touching code.">Los objetos de la tienda son ScriptableObjects (nombre, descripción, precio, malla, materiales y rareza), así que se pueden crear objetos nuevos sin tocar código.</li>
+            <li data-en="Each shop refresh picks random items without repeating them, and the money you have unlocks additional item lists.">Cada recarga de la tienda elige objetos al azar sin repetirlos, y el dinero que tienes desbloquea listas de objetos adicionales.</li>
+            <li data-en="Teammates work on the wheel and the letter panel.">Otros compañeros del equipo trabajan en la ruleta y en el panel de letras.</li>
+          </ul>
+          <ul class="tags"><li>Unity</li><li>C#</li><li>VR</li><li>XR Interaction Toolkit</li><li>ScriptableObjects</li></ul>
+          <a class="repo" href="https://github.com/RompeTibias/TheWheelOfMisfortuneVR"><span data-en="Team repository">Repositorio del equipo</span> →</a>
         </div>
       </article>
     </section>
