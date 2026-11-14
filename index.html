@@ -148,12 +148,8 @@ h4{margin:0 0 10px;font:500 12px var(--f-mono);letter-spacing:.12em;text-transfo
   background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.75),transparent 40%)}
 .holo svg{position:absolute;inset:0;z-index:1;width:100%;height:100%}
 .hint{margin:0;font:400 12px var(--f-mono);color:var(--muted)}
-.art.video{aspect-ratio:16/9;background:#000}
-.art.video iframe{display:block;width:100%;height:100%;border:0}
-.vlink{display:grid;place-items:center;align-content:center;gap:14px;text-decoration:none;color:var(--fg);font-weight:600;background:linear-gradient(135deg,var(--surface-2),var(--bg))}
-.vlink:hover .play{background:var(--c);border-color:var(--c)}
-.play{position:relative;width:68px;height:68px;border-radius:50%;border:2px solid var(--c);transition:background .15s,border-color .15s}
-.play::before{content:"";position:absolute;left:27px;top:20px;border-style:solid;border-width:13px 0 13px 22px;border-color:transparent transparent transparent var(--fg)}
+.art.video{aspect-ratio:640/338;background:#000}
+.art.video video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
 
 /* Más cosas */
 .more{border-top:1px solid var(--line);padding-block:36px 0}
@@ -248,7 +244,9 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
       <!-- 2ForCrime -->
       <article class="proj" id="pairsup" style="--c:var(--c-pairs)">
         <div class="art video">
-          <iframe src="https://www.youtube-nocookie.com/embed/4xICBXGJGN0" title="2ForCrime" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <video controls playsinline preload="metadata" poster="2ForCrime_Trailer.jpg" title="2ForCrime_Trailer" aria-label="2ForCrime_Trailer">
+            <source src="2ForCrime_Trailer.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="body">
           <div class="meta">
