@@ -81,16 +81,22 @@ h1{margin:0;font:700 clamp(2.1rem,6.2vw,3.7rem)/1.05 var(--f-display);letter-spa
 .status{display:inline-flex;align-items:center;gap:8px;color:var(--fg)}
 .status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
 .status.wip::before{background:var(--wip)}
+.kind{padding:3px 10px;border:1px solid var(--c);border-radius:6px;color:var(--c)}
 h3{margin:10px 0 8px;font:600 clamp(1.5rem,3.4vw,2rem)/1.15 var(--f-display)}
 .lead{margin:0 0 20px;max-width:60ch}
-h4{margin:0 0 10px;font:500 12px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--c)}
-.did{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:10px}
+.did{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .did li{position:relative;max-width:64ch;padding-left:20px}
 .did li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--c)}
-.tags{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.tags li{font:400 12px var(--f-mono);padding:4px 9px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
 .repo{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--c);text-decoration:none;border-bottom:1px solid transparent}
 .repo:hover{border-bottom-color:currentColor}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px}
+.did-btn{display:inline-flex;align-items:center;gap:8px;margin:0;padding:0;font:inherit;font-weight:600;color:var(--c);background:none;border:0;border-bottom:1px solid transparent;cursor:pointer}
+.did-btn:hover{border-bottom-color:currentColor}
+.did-btn:focus-visible,.repo:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:2px}
+.arr{display:inline-block;transition:transform .15s}
+.did-btn[aria-expanded="true"] .arr{transform:rotate(180deg)}
+.did-panel{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
+.did-note{margin:0 0 14px;font:400 12.5px var(--f-mono);color:var(--muted)}
 
 /* Ilustraciones */
 .gl{fill:none;stroke:var(--line);stroke-width:1;opacity:.6}
@@ -165,7 +171,7 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .holo,.btn{transition:none}
+  .holo,.btn,.arr{transition:none}
 }
 </style>
 </head>
@@ -222,22 +228,23 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </svg>
         </div>
         <div class="body">
-          <div class="meta">
-            <span class="status" data-en="Finished">Terminado</span>
-            <span data-en="Solo project · Mar–May 2026">Proyecto individual · mar–may 2026</span>
-          </div>
+          <div class="meta"><span class="status" data-en="Finished">Terminado</span><span class="kind" data-en="Solo project">Proyecto individual</span></div>
           <h3>ActionShoter</h3>
           <p class="lead" data-en="A 3D survival game against waves of enemies. The goal is to last as long as you can.">Juego de supervivencia en 3D contra oleadas de enemigos. El objetivo es aguantar el máximo tiempo posible.</p>
-          <h4 data-en="What I did">Lo que hice yo</h4>
-          <ul class="did">
-            <li data-en="Weapons with different attack styles (raycast shots, laser and area attack). They share one interface and their stats live in ScriptableObjects: reload time, range, fire rate and max ammo.">Armas con distintos estilos de ataque (disparo por raycast, láser y ataque en área). Comparten una interfaz y sus datos viven en ScriptableObjects: recarga, rango, cadencia y munición máxima.</li>
-            <li data-en="Two enemy types: a heavy one that hits harder and moves slower, and a light one that hits less and moves faster. The player takes different damage from each.">Dos tipos de enemigo: uno pesado que hace más daño y va más lento, y uno ligero que hace menos daño y va más rápido. El jugador recibe un daño distinto de cada uno.</li>
-            <li data-en="A terrain with a NavMesh so enemies chase the player, and spawners that send waves. Each wave brings more enemies with more health, and they spawn faster.">Un terreno con NavMesh para que los enemigos persigan al jugador, y spawners que lanzan oleadas. Cada oleada trae más enemigos con más vida y salen más rápido.</li>
-            <li data-en="UI with a timer, health and ammo, plus start, pause and game over menus.">Interfaz con temporizador, vida y munición, y menús de inicio, pausa y derrota.</li>
-            <li data-en="Two power-ups.">Dos power-ups.</li>
-          </ul>
-          <ul class="tags"><li>Unity</li><li>C#</li><li>NavMesh</li><li>ScriptableObjects</li><li>Input System</li></ul>
-          <a class="repo" href="https://github.com/fjnl2006/ActionShoter"><span data-en="View repository">Ver repositorio</span> →</a>
+          <div class="links">
+            <a class="repo" href="https://github.com/fjnl2006/ActionShoter"><span data-en="View repository">Ver repositorio</span> →</a>
+            <button type="button" class="did-btn" aria-expanded="false" aria-controls="did-actionshoter"><span data-en="What I did">Lo que hice yo</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="did-panel" id="did-actionshoter">
+            <p class="did-note" data-en="March–May 2026">Marzo–mayo 2026</p>
+            <ul class="did">
+              <li data-en="Weapons with different attack styles (raycast shots, laser and area attack). They share one interface and their stats live in ScriptableObjects: reload time, range, fire rate and max ammo.">Armas con distintos estilos de ataque (disparo por raycast, láser y ataque en área). Comparten una interfaz y sus datos viven en ScriptableObjects: recarga, rango, cadencia y munición máxima.</li>
+              <li data-en="Two enemy types: a heavy one that hits harder and moves slower, and a light one that hits less and moves faster. The player takes different damage from each.">Dos tipos de enemigo: uno pesado que hace más daño y va más lento, y uno ligero que hace menos daño y va más rápido. El jugador recibe un daño distinto de cada uno.</li>
+              <li data-en="A terrain with a NavMesh so enemies chase the player, and spawners that send waves. Each wave brings more enemies with more health, and they spawn faster.">Un terreno con NavMesh para que los enemigos persigan al jugador, y spawners que lanzan oleadas. Cada oleada trae más enemigos con más vida y salen más rápido.</li>
+              <li data-en="UI with a timer, health and ammo, plus start, pause and game over menus.">Interfaz con temporizador, vida y munición, y menús de inicio, pausa y derrota.</li>
+              <li data-en="Two power-ups.">Dos power-ups.</li>
+            </ul>
+          </div>
         </div>
       </article>
 
@@ -249,21 +256,22 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </video>
         </div>
         <div class="body">
-          <div class="meta">
-            <span class="status" data-en="Finished">Terminado</span>
-            <span data-en="Team project · Feb–May 2026 · 56 of the repo's 143 commits are mine">Proyecto en equipo · feb–may 2026 · 56 de los 143 commits del repo son míos</span>
-          </div>
+          <div class="meta"><span class="status" data-en="Finished">Terminado</span><span class="kind" data-en="Team project">Proyecto en equipo</span></div>
           <h3>2ForCrime</h3>
           <p class="lead" data-en="A collection of minigames for several players, built as a team, with a lobby and score screens between rounds.">Colección de minijuegos para varios jugadores hecha en equipo, con lobby y pantallas de puntuación entre rondas.</p>
-          <h4 data-en="What I did">Lo que hice yo</h4>
-          <ul class="did">
-            <li data-en="Laser Tag: bullets that bounce off walls using Vector2.Reflect, aiming with Atan2, a health system with its UI, and team selection.">Laser Tag: balas que rebotan en las paredes con Vector2.Reflect, apuntado con Atan2, sistema de vida con su interfaz y selección de equipo.</li>
-            <li data-en="Maze: dynamic walls, cooperative player spawning, colored goals and a darkness shader that limits what players can see.">Laberinto: muros dinámicos, aparición cooperativa de los jugadores, metas de colores y un shader de oscuridad que limita lo que se ve.</li>
-            <li data-en="Team Pong: colored gates that depend on each player's team tag.">Pong por equipos: puertas de colores que dependen de la etiqueta de equipo de cada jugador.</li>
-            <li data-en="Teamwork with Git: my own branch and frequent merges with main.">Trabajo en equipo con Git: una rama propia y merges frecuentes con main.</li>
-          </ul>
-          <ul class="tags"><li>Unity 2D</li><li>C#</li><li>Shader</li><li>Input System</li><li>Git</li></ul>
-          <a class="repo" href="https://github.com/Davlex728/PairsUp"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+          <div class="links">
+            <a class="repo" href="https://github.com/Davlex728/PairsUp"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+            <button type="button" class="did-btn" aria-expanded="false" aria-controls="did-pairsup"><span data-en="What I did">Lo que hice yo</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="did-panel" id="did-pairsup">
+            <p class="did-note" data-en="February–May 2026 · 56 of the repo's 143 commits are mine">Febrero–mayo 2026 · 56 de los 143 commits del repo son míos</p>
+            <ul class="did">
+              <li data-en="Laser Tag: bullets that bounce off walls using Vector2.Reflect, aiming with Atan2, a health system with its UI, and team selection.">Laser Tag: balas que rebotan en las paredes con Vector2.Reflect, apuntado con Atan2, sistema de vida con su interfaz y selección de equipo.</li>
+              <li data-en="Maze: dynamic walls, cooperative player spawning, colored goals and a darkness shader that limits what players can see.">Laberinto: muros dinámicos, aparición cooperativa de los jugadores, metas de colores y un shader de oscuridad que limita lo que se ve.</li>
+              <li data-en="Team Pong: colored gates that depend on each player's team tag.">Pong por equipos: puertas de colores que dependen de la etiqueta de equipo de cada jugador.</li>
+              <li data-en="Teamwork with Git: my own branch and frequent merges with main.">Trabajo en equipo con Git: una rama propia y merges frecuentes con main.</li>
+            </ul>
+          </div>
         </div>
       </article>
 
@@ -287,22 +295,23 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </div>
         </div>
         <div class="body">
-          <div class="meta">
-            <span class="status" data-en="Finished">Terminado</span>
-            <span data-en="Course project (Computer Graphics) · Oct–Nov 2026">Trabajo de clase (Gráficos por computador) · oct–nov 2026</span>
-          </div>
+          <div class="meta"><span class="status" data-en="Finished">Terminado</span><span class="kind" data-en="Class project">Trabajo de clase</span></div>
           <h3 data-en="Shaders with Shader Graph">Shaders con Shader Graph</h3>
           <p class="lead" data-en="A collection of shaders from the Computer Graphics course: a holographic collectible card that reacts to the mouse, water with waves and a dissolve effect. The animated card here copies the idea in CSS.">Colección de shaders de la asignatura Gráficos por computador: una carta coleccionable holográfica que reacciona al ratón, un agua con olas y un efecto de disolución. La carta animada de esta ficha copia la idea en CSS.</p>
-          <h4 data-en="What I did">Lo que hice yo</h4>
-          <ul class="did">
-            <li data-en="Holographic card: a shader with configurable holographic colors and gradient, stripes and glare, made in Shader Graph for URP.">Carta holográfica: un shader con colores y degradado holográfico, rayas y brillo configurables, hecho en Shader Graph para URP.</li>
-            <li data-en="A C# script casts a ray from the mouse, reads the UV coordinate it hits on the card and sends it to the shader as _PointerPosition through a MaterialPropertyBlock, without creating a new material.">Un script en C# lanza un rayo desde el ratón, lee la coordenada UV que toca en la carta y se la pasa al shader como _PointerPosition con un MaterialPropertyBlock, sin crear un material nuevo.</li>
-            <li data-en="Water: waves move by displacing vertices with a sine wave (configurable frequency, height and rotation), and the surface blends two normal maps that scroll over time.">Agua: las olas se mueven desplazando los vértices con una onda senoidal (frecuencia, altura y rotación configurables), y la superficie mezcla dos mapas de normales que se desplazan con el tiempo.</li>
-            <li data-en="Dissolve effect: noise gradually cuts the character away, the edge glows with its own color and a fresnel effect is added.">Efecto de disolución: un ruido recorta el personaje poco a poco, el borde brilla con un color propio y se añade un efecto fresnel.</li>
-            <li data-en="Camera control to orbit around the card by dragging.">Control de cámara para girar alrededor de la carta arrastrando.</li>
-          </ul>
-          <ul class="tags"><li>Shader Graph</li><li>URP</li><li>C#</li><li>MaterialPropertyBlock</li></ul>
-          <a class="repo" href="https://github.com/fjnl2006/GraficosPorComputador"><span data-en="View repository">Ver repositorio</span> →</a>
+          <div class="links">
+            <a class="repo" href="https://github.com/fjnl2006/GraficosPorComputador"><span data-en="View repository">Ver repositorio</span> →</a>
+            <button type="button" class="did-btn" aria-expanded="false" aria-controls="did-holo"><span data-en="What I did">Lo que hice yo</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="did-panel" id="did-holo">
+            <p class="did-note" data-en="Computer Graphics · October–November 2026">Gráficos por computador · octubre–noviembre 2026</p>
+            <ul class="did">
+              <li data-en="Holographic card: a shader with configurable holographic colors and gradient, stripes and glare, made in Shader Graph for URP.">Carta holográfica: un shader con colores y degradado holográfico, rayas y brillo configurables, hecho en Shader Graph para URP.</li>
+              <li data-en="A C# script casts a ray from the mouse, reads the UV coordinate it hits on the card and sends it to the shader as _PointerPosition through a MaterialPropertyBlock, without creating a new material.">Un script en C# lanza un rayo desde el ratón, lee la coordenada UV que toca en la carta y se la pasa al shader como _PointerPosition con un MaterialPropertyBlock, sin crear un material nuevo.</li>
+              <li data-en="Water: waves move by displacing vertices with a sine wave (configurable frequency, height and rotation), and the surface blends two normal maps that scroll over time.">Agua: las olas se mueven desplazando los vértices con una onda senoidal (frecuencia, altura y rotación configurables), y la superficie mezcla dos mapas de normales que se desplazan con el tiempo.</li>
+              <li data-en="Dissolve effect: noise gradually cuts the character away, the edge glows with its own color and a fresnel effect is added.">Efecto de disolución: un ruido recorta el personaje poco a poco, el borde brilla con un color propio y se añade un efecto fresnel.</li>
+              <li data-en="Camera control to orbit around the card by dragging.">Control de cámara para girar alrededor de la carta arrastrando.</li>
+            </ul>
+          </div>
         </div>
       </article>
 
@@ -329,22 +338,23 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </svg>
         </div>
         <div class="body">
-          <div class="meta">
-            <span class="status wip" data-en="In development">En desarrollo</span>
-            <span data-en="Team project · since Oct 2026">Proyecto en equipo · desde oct 2026</span>
-          </div>
+          <div class="meta"><span class="status wip" data-en="In development">En desarrollo</span><span class="kind" data-en="Team project">Proyecto en equipo</span></div>
           <h3>PackageLost</h3>
           <p class="lead" data-en="An online multiplayer game made with Unity and Netcode for GameObjects. I'm still working on it.">Juego multijugador en red hecho con Unity y Netcode for GameObjects. Sigo trabajando en él.</p>
-          <h4 data-en="What I'm doing">Lo que estoy haciendo yo</h4>
-          <ul class="did">
-            <li data-en="The pick-up mechanic: players grab boxes with the E key (PlayerPickUp). The box each player holds is synced over the network with a NetworkVariable, and the server decides who gets the box with ServerRpc calls.">La mecánica de coger cajas con la tecla E (PlayerPickUp). La caja que lleva cada jugador se sincroniza en red con una NetworkVariable, y el servidor decide quién se queda la caja con llamadas ServerRpc.</li>
-            <li data-en="The online scoring system: each base counts the boxes that enter its zone, and the scores of the 4 bases live in a NetworkList that only the server can change.">El sistema de puntuación en red: cada base cuenta las cajas que entran en su zona, y los marcadores de las 4 bases viven en una NetworkList que solo el servidor puede modificar.</li>
-            <li data-en="Base assignment: when a player connects, the server gives them the first free base out of 4, and frees it when they disconnect (GameManager).">La asignación de bases: cuando un jugador se conecta, el servidor le da la primera base libre de las 4, y la libera cuando se desconecta (GameManager).</li>
-            <li data-en="The script reads the pick-up action from the Input System through StarterAssetsInputs, on top of the Starter Assets character controllers.">El script lee la acción de coger del Input System a través de StarterAssetsInputs, sobre los controladores de personaje de Starter Assets.</li>
-            <li data-en="The project already has a lobby, connection approval and a match manager, and it keeps growing.">El proyecto ya tiene lobby, aprobación de conexiones y gestor de partida, y sigue creciendo.</li>
-          </ul>
-          <ul class="tags"><li>Unity</li><li>C#</li><li>Netcode for GameObjects</li><li>ServerRpc</li><li>NetworkVariable</li><li>NetworkList</li></ul>
-          <a class="repo" href="https://github.com/maizzon14/PackageLost"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+          <div class="links">
+            <a class="repo" href="https://github.com/maizzon14/PackageLost"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+            <button type="button" class="did-btn" aria-expanded="false" aria-controls="did-packagelost"><span data-en="What I'm doing">Lo que estoy haciendo yo</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="did-panel" id="did-packagelost">
+            <p class="did-note" data-en="Since October 2026">Desde octubre de 2026</p>
+            <ul class="did">
+              <li data-en="The pick-up mechanic: players grab boxes with the E key (PlayerPickUp). The box each player holds is synced over the network with a NetworkVariable, and the server decides who gets the box with ServerRpc calls.">La mecánica de coger cajas con la tecla E (PlayerPickUp). La caja que lleva cada jugador se sincroniza en red con una NetworkVariable, y el servidor decide quién se queda la caja con llamadas ServerRpc.</li>
+              <li data-en="The online scoring system: each base counts the boxes that enter its zone, and the scores of the 4 bases live in a NetworkList that only the server can change.">El sistema de puntuación en red: cada base cuenta las cajas que entran en su zona, y los marcadores de las 4 bases viven en una NetworkList que solo el servidor puede modificar.</li>
+              <li data-en="Base assignment: when a player connects, the server gives them the first free base out of 4, and frees it when they disconnect (GameManager).">La asignación de bases: cuando un jugador se conecta, el servidor le da la primera base libre de las 4, y la libera cuando se desconecta (GameManager).</li>
+              <li data-en="The script reads the pick-up action from the Input System through StarterAssetsInputs, on top of the Starter Assets character controllers.">El script lee la acción de coger del Input System a través de StarterAssetsInputs, sobre los controladores de personaje de Starter Assets.</li>
+              <li data-en="The project already has a lobby, connection approval and a match manager, and it keeps growing.">El proyecto ya tiene lobby, aprobación de conexiones y gestor de partida, y sigue creciendo.</li>
+            </ul>
+          </div>
         </div>
       </article>
 
@@ -375,21 +385,22 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
           </svg>
         </div>
         <div class="body">
-          <div class="meta">
-            <span class="status wip" data-en="In development">En desarrollo</span>
-            <span data-en="Team project · since Nov 2026">Proyecto en equipo · desde nov 2026</span>
-          </div>
+          <div class="meta"><span class="status wip" data-en="In development">En desarrollo</span><span class="kind" data-en="Team project">Proyecto en equipo</span></div>
           <h3>TheHellOfAFortune</h3>
           <p class="lead" data-en="A virtual reality game inspired by a wheel-of-fortune show: you spin the wheel with your hands, uncover phrases letter by letter on a panel and buy items in a shop. We build it as a team with Unity and the XR Interaction Toolkit.">Juego de realidad virtual inspirado en la ruleta de la suerte: giras la ruleta con las manos, descubres frases letra a letra en un panel y compras objetos en una tienda. Lo hacemos en equipo con Unity y XR Interaction Toolkit.</p>
-          <h4 data-en="What I'm doing">Lo que estoy haciendo yo</h4>
-          <ul class="did">
-            <li data-en="The in-game shop: the VR shop scene and the scripts that run it (ShopManager and ShopSlot).">La tienda del juego: la escena de la tienda en VR y los scripts que la hacen funcionar (ShopManager y ShopSlot).</li>
-            <li data-en="Shop items are ScriptableObjects (name, description, price, mesh, materials and rarity), so new items can be created without touching code.">Los objetos de la tienda son ScriptableObjects (nombre, descripción, precio, malla, materiales y rareza), así que se pueden crear objetos nuevos sin tocar código.</li>
-            <li data-en="Each shop refresh picks random items without repeating them, and the money you have unlocks additional item lists.">Cada recarga de la tienda elige objetos al azar sin repetirlos, y el dinero que tienes desbloquea listas de objetos adicionales.</li>
-            <li data-en="Teammates work on the wheel and the letter panel.">Otros compañeros del equipo trabajan en la ruleta y en el panel de letras.</li>
-          </ul>
-          <ul class="tags"><li>Unity</li><li>C#</li><li>VR</li><li>XR Interaction Toolkit</li><li>ScriptableObjects</li></ul>
-          <a class="repo" href="https://github.com/RompeTibias/TheWheelOfMisfortuneVR"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+          <div class="links">
+            <a class="repo" href="https://github.com/RompeTibias/TheWheelOfMisfortuneVR"><span data-en="Team repository">Repositorio del equipo</span> →</a>
+            <button type="button" class="did-btn" aria-expanded="false" aria-controls="did-wheel"><span data-en="What I'm doing">Lo que estoy haciendo yo</span><span class="arr" aria-hidden="true">↓</span></button>
+          </div>
+          <div class="did-panel" id="did-wheel">
+            <p class="did-note" data-en="Since November 2026">Desde noviembre de 2026</p>
+            <ul class="did">
+              <li data-en="The in-game shop: the VR shop scene and the scripts that run it (ShopManager and ShopSlot).">La tienda del juego: la escena de la tienda en VR y los scripts que la hacen funcionar (ShopManager y ShopSlot).</li>
+              <li data-en="Shop items are ScriptableObjects (name, description, price, mesh, materials and rarity), so new items can be created without touching code.">Los objetos de la tienda son ScriptableObjects (nombre, descripción, precio, malla, materiales y rareza), así que se pueden crear objetos nuevos sin tocar código.</li>
+              <li data-en="Each shop refresh picks random items without repeating them, and the money you have unlocks additional item lists.">Cada recarga de la tienda elige objetos al azar sin repetirlos, y el dinero que tienes desbloquea listas de objetos adicionales.</li>
+              <li data-en="Teammates work on the wheel and the letter panel.">Otros compañeros del equipo trabajan en la ruleta y en el panel de letras.</li>
+            </ul>
+          </div>
         </div>
       </article>
     </section>
@@ -438,6 +449,21 @@ footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);display
   var browser = (navigator.language || 'es').toLowerCase();
   var start = saved || (browser.indexOf('es') === 0 ? 'es' : 'en');
   if (start === 'en') setLang('en');
+
+  // Desplegables "Lo que hice yo"
+  var btns = document.querySelectorAll('.did-btn');
+  for (var j = 0; j < btns.length; j++) {
+    (function (btn) {
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!panel) return;
+      panel.hidden = true;
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        panel.hidden = open;
+      });
+    })(btns[j]);
+  }
 
   // Carta holográfica: el brillo sigue al puntero
   var card = document.getElementById('holo-card');
